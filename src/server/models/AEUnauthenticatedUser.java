@@ -1,6 +1,7 @@
 package server.models;
 
 public class AEUnauthenticatedUser implements User {
+    private UserData userData;
     @Override
     public String blueprint() {
         return "UnAuthenticated";
@@ -8,11 +9,11 @@ public class AEUnauthenticatedUser implements User {
 
     @Override
     public UserData getUserData() {
-        return null;
+        return this.userData;
     }
 
     @Override
     public void updateUserData(String username, String password, String firstName, String lastName, String email) {
-
+        this.userData = new UserData(username, password, firstName, lastName, email);
     }
 }

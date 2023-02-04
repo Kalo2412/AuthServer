@@ -1,5 +1,7 @@
 package server.authenticator;
 
+import server.models.User;
+
 public interface Authenticator {
-    public void authenticate();
+    public void authenticate(User user);
 }

@@ -1,4 +1,4 @@
-package server.database;
+package server.services.database;
 
 import server.models.User;
 import java.util.HashSet;
@@ -6,9 +6,18 @@ import java.util.Set;
 
 public class AEDataBase implements DataBase {
     private Set<User> allUsers;
+    private static AEDataBase dataBase = null;
 
-    public AEDataBase() {
+    private AEDataBase() {
+        // todo: reload users from file
         this.allUsers = new HashSet<>();
+    }
+
+    public static AEDataBase getDataBase() {
+        if (dataBase == null) {
+            dataBase = new AEDataBase();
+        }
+        return dataBase;
     }
 
     @Override

@@ -11,9 +11,7 @@ public final class AEAuthorizator implements Authorizator {
         this.dataBase = dataBase;
     }
     @Override
-    public void authorizate(User user, String blueprint) {
-        if (!Objects.equals(user.blueprint(), blueprint)) {
-            return;
-        }
+    public void authorizate(String sessionId) {
+        return;
     }
 }

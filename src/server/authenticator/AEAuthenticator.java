@@ -10,7 +10,17 @@ public final class AEAuthenticator implements Authenticator {
     }
 
     @Override
-    public void authenticate(User user) {
+    public void authenticate(String username, String password, String firstName, String lastName, String email) {
+
+    }
+
+    @Override
+    public void authenticate(String username, String password) {
+
+    }
+
+    @Override
+    public void authenticate(String sessionId) {
 
     }
 }

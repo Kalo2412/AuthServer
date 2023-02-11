@@ -8,4 +8,5 @@ public interface User {
                                   String firstName,
                                   String lastName,
                                   String email);
+    public void updateUserData(UserData userData);
 }

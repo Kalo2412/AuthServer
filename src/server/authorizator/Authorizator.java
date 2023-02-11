@@ -1,7 +1,8 @@
 package server.authorizator;
 
+import server.models.AEAuthenticatedUser;
 import server.models.User;
 
 public interface Authorizator {
-    public void authorizate(String sessionId);
+    public AEAuthenticatedUser authorizate(User user);
 }

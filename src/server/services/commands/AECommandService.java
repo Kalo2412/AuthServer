@@ -12,13 +12,8 @@ import java.util.stream.Stream;
 
 public class AECommandService implements CommandService {
     private Map<String, String> input = null;
-    private final Authorizator authorizator;
-    private final Authenticator authenticator;
     private final ProxyDB proxyDB;
-
-    public AECommandService(Authorizator authorizator, Authenticator authenticator, ProxyDB proxyDB) {
-        this.authorizator = authorizator;
-        this.authenticator = authenticator;
+    public AECommandService(ProxyDB proxyDB) {
         this.proxyDB = proxyDB;
     }
 
@@ -47,27 +42,16 @@ public class AECommandService implements CommandService {
     }
 
     private void register() {
-        this.authenticator.authenticate(
-                this.input.get(AEArguments.username),
-                this.input.get(AEArguments.password),
-                this.input.get(AEArguments.first_name),
-                this.input.get(AEArguments.last_name),
-                this.input.get(AEArguments.email));
+        // todo
         login();
     }
 
     private void login() {
-        if (this.input.size() == 2) {
-            this.authenticator.authenticate(this.input.get(AEArguments.session_id));
-        } else {
-            this.authenticator.authenticate(
-                    this.input.get(AEArguments.username),
-                    this.input.get(AEArguments.password));
-        }
+        // todo
     }
 
     private void updateUser() {
-        this.authenticator.authenticate(this.input.get(AEArguments.session_id));
+        // todo
         this.proxyDB.updateUser(
                 this.input.get(AEArguments.session_id),
                 this.input.get(AEArguments.new_username),
@@ -78,7 +62,7 @@ public class AECommandService implements CommandService {
     }
 
     private void resetPassword() {
-        this.authenticator.authenticate(this.input.get(AEArguments.session_id));
+        // todo
         this.proxyDB.resetPassword(
                 this.input.get(AEArguments.session_id),
                 this.input.get(AEArguments.username),
@@ -88,29 +72,26 @@ public class AECommandService implements CommandService {
     }
 
     private void logout() {
-        this.authenticator.authenticate(this.input.get(AEArguments.session_id));
+        // todo
         this.proxyDB.logout(this.input.get(AEArguments.session_id));
     }
 
     private void addAdminUser() {
-        this.authenticator.authenticate(this.input.get(AEArguments.session_id));
-        this.authorizator.authorizate(this.input.get(AEArguments.session_id));
+        // todo
         this.proxyDB.addAdminUser(
                 this.input.get(AEArguments.session_id),
                 this.input.get(AEArguments.username));
     }
 
     private void removeAdminUser() {
-        this.authenticator.authenticate(this.input.get(AEArguments.session_id));
-        this.authorizator.authorizate(this.input.get(AEArguments.session_id));
+        // todo
         this.proxyDB.removeAdminUser(
                 this.input.get(AEArguments.session_id),
                 this.input.get(AEArguments.username));
     }
 
     private void deleteUser() {
-        this.authenticator.authenticate(this.input.get(AEArguments.session_id));
-        this.authorizator.authorizate(this.input.get(AEArguments.session_id));
+        // todo
         this.proxyDB.deleteUser(
                 this.input.get(AEArguments.session_id),
                 this.input.get(AEArguments.username));

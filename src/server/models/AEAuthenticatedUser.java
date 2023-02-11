@@ -1,5 +1,6 @@
 package server.models;
 
+import java.util.Objects;
 import java.util.Optional;
 
 public class AEAuthenticatedUser implements User {
@@ -12,6 +13,10 @@ public class AEAuthenticatedUser implements User {
                                String email) {
 
         this.userData = new UserData(username, password, firstName, lastName, email);
+    }
+
+    public AEAuthenticatedUser(UserData userData) {
+        this.userData = userData;
     }
 
     @Override
@@ -30,6 +35,11 @@ public class AEAuthenticatedUser implements User {
     }
 
     @Override
+    public void updateUserData(UserData userData) {
+        this.userData = userData;
+    }
+
+    @Override
     public UserData getUserData() {
         return userData;
     }
@@ -37,5 +47,17 @@ public class AEAuthenticatedUser implements User {
     @Override
     public String blueprint() {
         return "Authenticated";
+    }
+
+    @Override
+    public int hashCode() {
+        return this.userData.hashCode();
+    }
+    @Override
+    public boolean equals(Object obj) {
+        if (!(obj instanceof AEAuthenticatedUser) && !(obj instanceof AEUnauthenticatedUser)) {
+            return false;
+        }
+        return Objects.equals(this.userData, ((User) obj).getUserData());
     }
 }

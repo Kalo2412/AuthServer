@@ -14,7 +14,7 @@ public class AESession {
     public AESession() {
         this.lastCommandTimestamp = new Timestamp(System.currentTimeMillis());
     }
-    private String getUniqueID() {
+    public String getUniqueID() {
         return this.uniqueID;
     }
     public boolean validate() {

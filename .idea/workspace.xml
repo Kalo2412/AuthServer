@@ -11,14 +11,15 @@
       <change beforePath="$PROJECT_DIR$/src/server/authenticator/Authenticator.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/server/authenticator/Authenticator.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/server/authorizator/AEAuthorizator.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/server/authorizator/AEAuthorizator.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/server/authorizator/Authorizator.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/server/authorizator/Authorizator.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/server/models/AEAdmin.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/server/models/AEAdmin.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/server/models/AEAuthenticatedUser.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/server/models/AEAuthenticatedUser.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/server/models/AEUnauthenticatedUser.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/server/models/AEUnauthenticatedUser.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/server/models/AEAdmin.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/server/models/AEAuthenticatedUser.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/server/models/AEUnauthenticatedUser.java" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/src/server/models/User.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/server/models/User.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/server/services/commands/AECommandService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/server/services/commands/AECommandService.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/server/services/database/AEDataBase.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/server/services/database/AEDataBase.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/server/services/database/DataBase.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/server/services/database/DataBase.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/server/services/proxy/AEProxyDB.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/server/services/proxy/AEProxyDB.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/server/services/proxy/ProxyDB.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/server/services/proxy/ProxyDB.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/server/services/session/AESession.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/server/services/session/AESession.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -107,27 +108,11 @@
       <workItem from="1675331201018" duration="38000" />
       <workItem from="1675331244247" duration="34000" />
       <workItem from="1675425887280" duration="25217000" />
-      <workItem from="1675948515352" duration="9690000" />
+      <workItem from="1675948515352" duration="25819000" />
     </task>
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="3" />
-  </component>
-  <component name="XDebuggerManager">
-    <breakpoint-manager>
-      <breakpoints>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/server/models/AEAuthenticatedUser.java</url>
-          <line>53</line>
-          <option name="timeStamp" value="4" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/server/models/AEAuthenticatedUser.java</url>
-          <line>57</line>
-          <option name="timeStamp" value="5" />
-        </line-breakpoint>
-      </breakpoints>
-    </breakpoint-manager>
   </component>
 </project>

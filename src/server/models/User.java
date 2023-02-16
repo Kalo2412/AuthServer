@@ -1,7 +1,6 @@
 package server.models;
 
 public interface User {
-    public String blueprint();
     public UserData getUserData();
     public void updateUserData(String username,
                                   String password,
@@ -9,4 +8,8 @@ public interface User {
                                   String lastName,
                                   String email);
     public void updateUserData(UserData userData);
+    public boolean isAdmin();
+    public boolean isAuthenticated();
+    public void setAdmin(boolean isAdmin);
+    public void setAuthenticated(boolean isAuthenticated);
 }

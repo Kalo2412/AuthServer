@@ -4,7 +4,7 @@ import server.services.providers.AEArguments;
 import server.services.session.AESession;
 
 public interface ProxyDB {
-    public void register(String username, String password, String firstName, String lastName, String email);
+    public String register(String username, String password, String firstName, String lastName, String email);
     public String login(String username, String password);
     public void login(String sessionId);
     public void updateUser(String sessionId,

@@ -42,12 +42,20 @@ public class AECommandService implements CommandService {
     }
 
     private void register() {
-        // todo
+        this.proxyDB.register(
+                this.input.get(AEArguments.username),
+                this.input.get(AEArguments.password),
+                this.input.get(AEArguments.first_name),
+                this.input.get(AEArguments.last_name),
+                this.input.get(AEArguments.email)
+        );
         login();
     }
 
     private void login() {
-        // todo
+        this.proxyDB.login(
+                this.input.get(AEArguments.username),
+                this.input.get(AEArguments.password));
     }
 
     private void updateUser() {

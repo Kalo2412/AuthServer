@@ -3,6 +3,8 @@ package server.services.proxy;
 import server.authenticator.AEAuthenticator;
 import server.authenticator.Authenticator;
 import server.authorizator.Authorizator;
+import server.exceptions.SessionExpiredException;
+import server.exceptions.UserNotFoundException;
 import server.models.*;
 import server.services.database.AEDataBase;
 import server.services.database.DataBase;
@@ -27,134 +29,97 @@ public final class AEProxyDB implements ProxyDB {
     }
     @Override
     public String register(String username, String password, String firstName, String lastName, String email) {
-        User user = this.authenticator.authenticate(username, password, firstName, lastName, email);
-        if (user == null) {
-            user = new AEUser(username, password, firstName, lastName, email);
-            user.setAuthenticated(true);
-            AESession session = new AESession();
-            this.loggedUsers.put(session, user);
-            return session.getUniqueID();
-        }
-        return "";
+        this.authenticator.authenticate(username, password, firstName, lastName, email);
+        User user = this.authenticator.authenticate(username);
+        user.setAuthenticated(true);
+        AESession session = new AESession();
+        this.loggedUsers.put(session, user);
+        return session.getUniqueID();
     }
 
     @Override
     public String login(String username, String password) {
         User user = isUserLogged(username, password);
-        if (user == null) {
-            user = this.authenticator.authenticate(username, password);
-            if (user != null) {
-                user.setAuthenticated(true);
-                AESession session = new AESession();
-                this.loggedUsers.put(session, user);
-                return session.getUniqueID();
-            }
+        AESession session = new AESession();
+        if (user != null) {
+            removeUser(username);
+            user.setAuthenticated(true);
+            this.loggedUsers.put(session, user);
+        } else {
+            User anotherUser = this.authenticator.authenticate(username, password);
+            anotherUser.setAuthenticated(true);
+            this.loggedUsers.put(session, anotherUser);
         }
-        return "";
+        return session.getUniqueID();
     }
 
     @Override
     public void login(String sessionId) {
-        AESession session = isValidSession(sessionId);
-        if (session != null) {
-            if (!session.validate()) {
-                this.loggedUsers.remove(session, this.loggedUsers.get(session));
-                // todo
-            }
-        }
+        isValidSession(sessionId);
     }
 
     @Override
     public void updateUser(String sessionId, String newUsername, String newFirstName, String newLastname, String newEmail) {
         AESession session = isValidSession(sessionId);
-        if (session != null) {
-            if (!session.validate()) {
-                this.loggedUsers.remove(session, this.loggedUsers.get(session));
-                // todo
-            } else {
-                this.dataBase.update(this.loggedUsers.get(session),
-                        new UserData(newUsername, null, newFirstName, newLastname, newEmail));
-            }
-        }
+        this.dataBase.update(this.loggedUsers.get(session),
+                    new UserData(newUsername, null, newFirstName, newLastname, newEmail));
     }
 
     @Override
     public void resetPassword(String sessionId, String username, String oldPassword, String newPassword) {
+        // check what to do with username
         AESession session = isValidSession(sessionId);
-        if (session != null) {
-            if (!session.validate()) {
-                this.loggedUsers.remove(session, this.loggedUsers.get(session));
-                // todo
-            } else {
-                // todo
-            }
-        }
+        User user = this.loggedUsers.get(session);
+        this.dataBase.updatePassword(user, newPassword);
     }
 
     @Override
     public void logout(String sessionId) {
         AESession session = isValidSession(sessionId);
-        if (session != null) {
-            this.loggedUsers.get(session).setAuthenticated(false);
-            this.loggedUsers.remove(session, this.loggedUsers.get(session));
-        }
+        this.loggedUsers.get(session).setAuthenticated(false);
+        this.loggedUsers.remove(session, this.loggedUsers.get(session));
     }
 
     @Override
     public void addAdminUser(String sessionId, String userName) {
         AESession session = isValidSession(sessionId);
-        if (session != null) {
-            if (session.validate()) {
-                if (this.authorizator.authorizate(this.loggedUsers.get(session))) {
-                    User user = this.dataBase.findUser(userName);
-                    if (user != null) {
-                        this.dataBase.updateRights(user, true);
-                    }
-                }
-            }
-        }
+        User user = this.loggedUsers.get(session);
+        this.authorizator.authorizate(user);
+        this.dataBase.updateRights(this.dataBase.findUser(userName), true);
     }
 
     @Override
     public void removeAdminUser(String sessionId, String userName) {
         AESession session = isValidSession(sessionId);
-        if (session != null) {
-            if (session.validate()) {
-                if (this.authorizator.authorizate(this.loggedUsers.get(session))) {
-                    User user = this.dataBase.findUser(userName);
-                    if (user != null) {
-                        this.dataBase.updateRights(user, false);
-                    }
-                }
-            }
-        }
+        User user = this.loggedUsers.get(session);
+        this.authorizator.authorizate(user);
+        this.dataBase.updateRights(this.dataBase.findUser(userName), false);
     }
 
     @Override
     public void deleteUser(String sessionId, String userName) {
         AESession session = isValidSession(sessionId);
-        if (session != null) {
-            if (session.validate()) {
-                if (this.authorizator.authorizate(this.loggedUsers.get(session))) {
-                    User user = this.dataBase.findUser(userName);
-                    if (user != null) {
-                        this.dataBase.delete(user);
-                        if (isUserLogged(userName, user.getUserData().password()) != null) {
-                            removeUser(userName);
-                        }
-                    }
-                }
-            }
+        User user = this.loggedUsers.get(session);
+        this.authorizator.authorizate(user);
+        User userToDelete = this.dataBase.findUser(userName);
+        if (userToDelete.isAuthenticated()) {
+            removeUser(userName);
         }
+        this.dataBase.delete(user);
     }
 
     private AESession isValidSession(String sessionID) {
         for (Map.Entry<AESession, User> entry : this.loggedUsers.entrySet()) {
             if (Objects.equals(entry.getKey().getUniqueID(), sessionID)) {
+                if (!entry.getKey().validate()) {
+                    entry.getValue().setAuthenticated(false);
+                    this.loggedUsers.remove(entry.getKey(), entry.getValue());
+                    throw new SessionExpiredException("Session expired");
+                }
                 return entry.getKey();
             }
         }
-        return null;
+        throw new UserNotFoundException("User is not logged!");
     }
 
     private User isUserLogged(String username, String password) {
@@ -170,6 +135,7 @@ public final class AEProxyDB implements ProxyDB {
     private void removeUser(String userName) {
         for (Map.Entry<AESession, User> entry : this.loggedUsers.entrySet()) {
             if (Objects.equals(entry.getValue().getUserData().username(), userName)) {
+                entry.getValue().setAuthenticated(false);
                 this.loggedUsers.remove(entry.getKey(), entry.getValue());
             }
         }

@@ -1,5 +1,8 @@
 package server.services.database;
 
+import server.exceptions.PasswordTheSameAsOldException;
+import server.exceptions.UserExistsException;
+import server.exceptions.UserNotFoundException;
 import server.models.User;
 import server.models.UserData;
 
@@ -25,17 +28,13 @@ public class AEDataBase implements DataBase {
 
     @Override
     public void save(User user) {
-        if(findUser(user) == null) {
-            this.allUsers.add(user);
-        }
+        this.allUsers.add(user);
         System.out.println(this.allUsers);
     }
 
     @Override
     public void delete(User user) {
-        if (findUser(user) != null) {
-            this.allUsers.remove(user);
-        }
+        this.allUsers.remove(user);
     }
 
     @Override
@@ -45,47 +44,67 @@ public class AEDataBase implements DataBase {
         String firstName = userData.firstName() == null ? user.getUserData().firstName() : userData.firstName();
         String lastName = userData.lastName() == null ? user.getUserData().lastName() : userData.lastName();
         String email = userData.email() == null ? user.getUserData().email() : userData.email();
-
-        UserData userData1 = new UserData(username, password, firstName, lastName, email);
-        user.updateUserData(userData1);
+        user.updateUserData(username, password, firstName, lastName, email);
     }
 
     @Override
-    public User findUser(User user) {
-        return this.allUsers.stream()
-                .filter(user1 -> Objects.equals(user1.getUserData(), user.getUserData()))
+    public void updatePassword(User user, String newPassword) {
+        if (Objects.equals(user.getUserData().password(), newPassword)) {
+            throw new PasswordTheSameAsOldException("New password is the same as old!");
+        } else {
+            String username = user.getUserData().username();
+            String firstName = user.getUserData().firstName();
+            String lastName = user.getUserData().lastName();
+            String email = user.getUserData().email();
+            user.updateUserData(username, newPassword, firstName, lastName, email);
+        }
+    }
+
+    @Override
+    public void register(User user) throws UserExistsException {
+        User userInDataBase = this.allUsers.stream()
+                .filter(user1 -> Objects.equals(user1.getUserData().username(), user.getUserData().username()))
                 .findFirst()
                 .orElse(null);
+        if (userInDataBase != null) {
+            throw new UserExistsException("This username is already taken.");
+        }
     }
 
     @Override
-    public User findUser(String username, String password) {
-        return this.allUsers.stream()
+    public User findUser(String username, String password) throws UserNotFoundException {
+        User userInDataBase = this.allUsers.stream()
                 .filter(user1 -> Objects.equals(user1.getUserData().username(), username)
                         && Objects.equals(user1.getUserData().password(), password))
                 .findFirst()
                 .orElse(null);
+        if (userInDataBase == null) {
+            throw new UserNotFoundException("This user is not in the database");
+        }
+
+        return userInDataBase;
     }
 
-    public User findUser(String username) {
-        return this.allUsers.stream()
+    public User findUser(String username) throws UserNotFoundException {
+        User userInDataBase = this.allUsers.stream()
                 .filter(user -> Objects.equals(user.getUserData().username(), username))
                 .findFirst()
                 .orElse(null);
+
+        if (userInDataBase == null) {
+            throw new UserNotFoundException("This user is not in the database");
+        }
+
+        return userInDataBase;
     }
 
     @Override
     public void updateRights(User user, boolean shouldBeAdmin) {
-        User user1 = findUser(user);
-        if (user1 != null) {
-            user1.setAdmin(shouldBeAdmin);
-        }
+        User user1 = findUser(user.getUserData().firstName());
+        user1.setAdmin(shouldBeAdmin);
     }
     @Override
     public boolean getRights(User user) {
         return user.isAdmin();
     }
-
-
-
 }

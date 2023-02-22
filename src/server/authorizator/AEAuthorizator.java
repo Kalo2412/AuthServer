@@ -1,5 +1,6 @@
 package server.authorizator;
 
+import server.exceptions.UserHasNoPermissionsException;
 import server.models.User;
 import server.services.database.DataBase;
 
@@ -11,7 +12,9 @@ public final class AEAuthorizator implements Authorizator {
         this.dataBase = dataBase;
     }
     @Override
-    public boolean authorizate(User user) {
-        return this.dataBase.getRights(user);
+    public void authorizate(User user) {
+        if (!this.dataBase.getRights(user)) {
+            throw new UserHasNoPermissionsException("This user is not admin!");
+        }
     }
 }

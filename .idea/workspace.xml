@@ -5,22 +5,19 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="9463c6a9-3b8e-47d6-bb6d-ce529812ee40" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/src/server/exceptions/InvalidCommandException.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/server/exceptions/PasswordTheSameAsOldException.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Main.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/server/authenticator/AEAuthenticator.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/server/authenticator/AEAuthenticator.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/server/authenticator/Authenticator.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/server/authenticator/Authenticator.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/server/authorizator/AEAuthorizator.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/server/authorizator/AEAuthorizator.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/server/authorizator/Authorizator.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/server/authorizator/Authorizator.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/server/models/AEAdmin.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/server/models/AEAuthenticatedUser.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/server/models/AEUnauthenticatedUser.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/server/models/User.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/server/models/User.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/server/exceptions/InvalidCommandParametersException.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/server/exceptions/InvalidCommandParametersException.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/server/models/AEUser.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/server/models/AEUser.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/server/services/commands/AECommandService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/server/services/commands/AECommandService.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/server/services/database/AEDataBase.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/server/services/database/AEDataBase.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/server/services/database/DataBase.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/server/services/database/DataBase.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/server/services/proxy/AEProxyDB.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/server/services/proxy/AEProxyDB.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/server/services/proxy/ProxyDB.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/server/services/proxy/ProxyDB.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/server/services/session/AESession.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/server/services/session/AESession.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -108,7 +105,9 @@
       <workItem from="1675331201018" duration="38000" />
       <workItem from="1675331244247" duration="34000" />
       <workItem from="1675425887280" duration="25217000" />
-      <workItem from="1675948515352" duration="25819000" />
+      <workItem from="1675948515352" duration="28364000" />
+      <workItem from="1676649063951" duration="1152000" />
+      <workItem from="1677094814254" duration="4386000" />
     </task>
     <servers />
   </component>

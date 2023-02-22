@@ -16,7 +16,7 @@ public class AEUser implements User {
 
     @Override
     public void updateUserData(String username, String password, String firstName, String lastName, String email) {
-
+        this.userData = new UserData(username, password, firstName, lastName, email);
     }
 
     @Override

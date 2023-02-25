@@ -3,13 +3,13 @@ package server.services.proxy;
 import server.authenticator.AEAuthenticator;
 import server.authenticator.Authenticator;
 import server.authorizator.Authorizator;
-import server.exceptions.SessionExpiredException;
-import server.exceptions.UserNotFoundException;
+import server.exceptions.*;
 import server.models.*;
 import server.services.database.AEDataBase;
 import server.services.database.DataBase;
 import server.services.session.AESession;
 
+import java.util.HashMap;
 import java.util.Map;
 import java.util.Objects;
 import java.util.Optional;
@@ -20,15 +20,15 @@ public final class AEProxyDB implements ProxyDB {
     private final DataBase dataBase;
     private final Authenticator authenticator;
     private final Authorizator authorizator;
-    private final ConcurrentMap<AESession, User> loggedUsers;
+    private final Map<AESession, User> loggedUsers;
     public AEProxyDB(DataBase dataBase, Authenticator authenticator, Authorizator authorizator) {
         this.dataBase = dataBase;
         this.authenticator = authenticator;
         this.authorizator = authorizator;
-        this.loggedUsers = new ConcurrentHashMap<>();
+        this.loggedUsers = new HashMap<>();
     }
     @Override
-    public String register(String username, String password, String firstName, String lastName, String email) {
+    public String register(String username, String password, String firstName, String lastName, String email) throws UserExistsException {
         this.authenticator.authenticate(username, password, firstName, lastName, email);
         User user = this.authenticator.authenticate(username);
         user.setAuthenticated(true);
@@ -67,14 +67,11 @@ public final class AEProxyDB implements ProxyDB {
 
     @Override
     public void resetPassword(String sessionId, String username, String oldPassword, String newPassword) {
-        // check what to do with username
         AESession session = isValidSession(sessionId);
         User user = this.loggedUsers.get(session);
         if (!Objects.equals(user.getUserData().username(), username)) {
-            // todo
+            throw new NotValidUsernameException("Invalid username!");
         }
-
-
         this.dataBase.updatePassword(user, oldPassword, newPassword);
     }
 
@@ -129,9 +126,12 @@ public final class AEProxyDB implements ProxyDB {
 
     private User isUserLogged(String username, String password) {
         for (Map.Entry<AESession, User> entry : this.loggedUsers.entrySet()) {
-            if (Objects.equals(entry.getValue().getUserData().username(), username) &&
-                    Objects.equals(entry.getValue().getUserData().password(), password)) {
-                return entry.getValue();
+            if (Objects.equals(entry.getValue().getUserData().username(), username)) {
+                    if (Objects.equals(entry.getValue().getUserData().password(), password)) {
+                        return entry.getValue();
+                    } else {
+                        throw new WrongPasswordException("Wrong password!");
+                    }
             }
         }
         return null;
@@ -144,6 +144,10 @@ public final class AEProxyDB implements ProxyDB {
                 this.loggedUsers.remove(entry.getKey(), entry.getValue());
             }
         }
+    }
+
+    public Map<AESession, User> getLoggedUsers() {
+        return this.loggedUsers;
     }
 
 }

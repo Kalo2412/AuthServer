@@ -5,3 +5,5 @@ public class UserExistsException extends RuntimeException {
         super(message);
     }
 }
+
+

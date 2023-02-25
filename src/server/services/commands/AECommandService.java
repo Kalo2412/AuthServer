@@ -18,13 +18,13 @@ public class AECommandService implements CommandService {
     }
 
     @Override
-    public void handleCommand(String clientInput) {
+    public String handleCommand(String clientInput) {
         this.input = Stream.of(clientInput.split("--"))
                 .map(str -> str.split(" "))
                 .collect(Collectors.toMap(split -> split[0], split -> split.length > 1 ? split[1] : "command"));
         for (Map.Entry<String, String> entry: this.input.entrySet()) {
             if (Objects.equals("command", entry.getValue())) {
-                switch (entry.getKey()) {
+                return switch (entry.getKey()) {
                     case AECommands.login -> login();
                     case AECommands.register -> register();
                     case AECommands.update_user -> updateUser();
@@ -33,18 +33,16 @@ public class AECommandService implements CommandService {
                     case AECommands.add_admin_user -> addAdminUser();
                     case AECommands.remove_admin_user -> removeAdminUser();
                     case AECommands.delete_user -> deleteUser();
-                    default -> {
-                        throw new InvalidCommandException("Command not found!");
-                    }
-                }
-                return;
+                    default -> throw new InvalidCommandException("Command not found!");
+                };
             }
         }
         input.forEach((key, value) -> System.out.println(key + ": " + value));
+        return "";
     }
 
-    private void register() {
-        this.proxyDB.register(
+    private String register() {
+        return this.proxyDB.register(
                 isNotNull(AEArguments.username),
                 isNotNull(AEArguments.password),
                 isNotNull(AEArguments.first_name),
@@ -53,13 +51,13 @@ public class AECommandService implements CommandService {
         );
     }
 
-    private void login() {
-        this.proxyDB.login(
+    private String login() {
+        return this.proxyDB.login(
                 isNotNull(AEArguments.username),
                 isNotNull(AEArguments.password));
     }
 
-    private void updateUser() {
+    private String updateUser() {
         this.proxyDB.updateUser(
                 isNotNull(AEArguments.session_id),
                 isNotNull(AEArguments.new_username),
@@ -67,37 +65,51 @@ public class AECommandService implements CommandService {
                 isNotNull(AEArguments.new_last_name),
                 isNotNull(AEArguments.new_email)
         );
+
+
+        return "";
     }
 
-    private void resetPassword() {
+    private String resetPassword() {
         this.proxyDB.resetPassword(
                 isNotNull(AEArguments.session_id),
                 isNotNull(AEArguments.username),
                 isNotNull(AEArguments.old_password),
                 isNotNull(AEArguments.new_password)
         );
+
+
+        return "";
     }
 
-    private void logout() {
+    private String logout() {
         this.proxyDB.logout(isNotNull(AEArguments.session_id));
+
+        return "";
     }
 
-    private void addAdminUser() {
+    private String addAdminUser() {
         this.proxyDB.addAdminUser(
                 isNotNull(AEArguments.session_id),
                 isNotNull(AEArguments.username));
+
+        return "";
     }
 
-    private void removeAdminUser() {
+    private String removeAdminUser() {
         this.proxyDB.removeAdminUser(
                 isNotNull(AEArguments.session_id),
                 isNotNull(AEArguments.username));
+
+        return "";
     }
 
-    private void deleteUser() {
+    private String deleteUser() {
         this.proxyDB.deleteUser(
                 isNotNull(AEArguments.session_id),
                 isNotNull(AEArguments.username));
+
+        return "";
     }
 
     private String isNotNull(String arg) {

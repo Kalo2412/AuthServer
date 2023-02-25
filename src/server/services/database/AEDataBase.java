@@ -77,7 +77,7 @@ public class AEDataBase implements DataBase {
     public User findUser(String username, String password) throws UserNotFoundException {
         User userInDataBase = this.allUsers.stream()
                 .filter(user1 -> Objects.equals(user1.getUserData().username(), username)
-                        && Objects.equals(user1.getUserData().password(), password))
+                        && Objects.equals(user1.getUserData().getPlainTextPassword(), password))
                 .findFirst()
                 .orElse(null);
         if (userInDataBase == null) {

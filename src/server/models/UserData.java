@@ -8,4 +8,7 @@ public record UserData(@Nullable String username,@Nullable String password,@Null
     public String password() {
         return password == null ? null : AEPasswordSHA.hashPassword(password);
     }
+    public String getPlainTextPassword() {
+        return password;
+    }
 }

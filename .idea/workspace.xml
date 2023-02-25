@@ -5,18 +5,12 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="9463c6a9-3b8e-47d6-bb6d-ce529812ee40" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/src/server/exceptions/InvalidCommandException.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/server/exceptions/PasswordTheSameAsOldException.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/server/authenticator/AEAuthenticator.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/server/authenticator/AEAuthenticator.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/server/authenticator/Authenticator.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/server/authenticator/Authenticator.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/server/authorizator/AEAuthorizator.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/server/authorizator/AEAuthorizator.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/server/authorizator/Authorizator.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/server/authorizator/Authorizator.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/server/exceptions/InvalidCommandParametersException.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/server/exceptions/InvalidCommandParametersException.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/server/models/AEUser.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/server/models/AEUser.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/server/services/commands/AECommandService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/server/services/commands/AECommandService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/AuthenticationServer.iml" beforeDir="false" afterPath="$PROJECT_DIR$/AuthenticationServer.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/server/models/UserData.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/server/models/UserData.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/server/services/database/AEDataBase.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/server/services/database/AEDataBase.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/server/services/database/DataBase.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/server/services/database/DataBase.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/server/services/providers/AEPasswordSHA.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/server/services/providers/AEPasswordSHA.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/server/services/proxy/AEProxyDB.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/server/services/proxy/AEProxyDB.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -30,6 +24,7 @@
         <option value="package-info" />
         <option value="Record" />
         <option value="Interface" />
+        <option value="JUnit5 Test Class" />
         <option value="Class" />
       </list>
     </option>
@@ -46,51 +41,126 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;Downloaded.Files.Path.Enabled&quot;: &quot;true&quot;,
-    &quot;Repository.Attach.Annotations&quot;: &quot;false&quot;,
-    &quot;Repository.Attach.JavaDocs&quot;: &quot;false&quot;,
-    &quot;Repository.Attach.Sources&quot;: &quot;false&quot;,
-    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
-    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
-    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
-    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
-    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
-    &quot;project.structure.last.edited&quot;: &quot;Global Libraries&quot;,
-    &quot;project.structure.proportion&quot;: &quot;0.0&quot;,
-    &quot;project.structure.side.proportion&quot;: &quot;0.0&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;advanced.settings&quot;,
-    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "Downloaded.Files.Path.Enabled": "true",
+    "Repository.Attach.Annotations": "false",
+    "Repository.Attach.JavaDocs": "false",
+    "Repository.Attach.Sources": "false",
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
+    "WebServerToolWindowFactoryState": "false",
+    "com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrary": "JUnit5",
+    "com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrarySuperClass.JUnit5": "",
+    "node.js.detected.package.eslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "project.structure.last.edited": "Global Libraries",
+    "project.structure.proportion": "0.0",
+    "project.structure.side.proportion": "0.0",
+    "settings.editor.selected.configurable": "advanced.settings",
+    "vue.rearranger.settings.migration": "true"
   }
-}</component>
-  <component name="RunManager" selected="Application.Main">
-    <configuration name="HTTPServerDemo" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="server.HTTPServerDemo" />
+}]]></component>
+  <component name="RecentsManager">
+    <key name="CreateTestDialog.Recents.Supers">
+      <recent name="" />
+    </key>
+    <key name="CreateTestDialog.RecentsKey">
+      <recent name="server.services.commands" />
+      <recent name="server.services.database" />
+      <recent name="server.services.proxy" />
+    </key>
+  </component>
+  <component name="RunManager" selected="JUnit.DataBaseTest.testUpdateUserData">
+    <configuration name="DataBaseTest.testFindUserInDataBaseWithUsername" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="AuthenticationServer" />
       <extension name="coverage">
         <pattern>
-          <option name="PATTERN" value="server.*" />
+          <option name="PATTERN" value="server.services.database.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
+      <option name="PACKAGE_NAME" value="server.services.database" />
+      <option name="MAIN_CLASS_NAME" value="server.services.database.DataBaseTest" />
+      <option name="METHOD_NAME" value="testFindUserInDataBaseWithUsername" />
+      <option name="TEST_OBJECT" value="method" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="Main" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="Main" />
+    <configuration name="DataBaseTest.testFindUserInDataBaseWithUsernameAndPassword" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="AuthenticationServer" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="server.services.database.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="server.services.database" />
+      <option name="MAIN_CLASS_NAME" value="server.services.database.DataBaseTest" />
+      <option name="METHOD_NAME" value="testFindUserInDataBaseWithUsernameAndPassword" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="DataBaseTest.testRegisterSameUserTwoTimes" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="AuthenticationServer" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="server.services.database.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="server.services.database" />
+      <option name="MAIN_CLASS_NAME" value="server.services.database.DataBaseTest" />
+      <option name="METHOD_NAME" value="testRegisterSameUserTwoTimes" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="DataBaseTest.testUpdateUserData" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="AuthenticationServer" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="server.services.database.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="server.services.database" />
+      <option name="MAIN_CLASS_NAME" value="server.services.database.DataBaseTest" />
+      <option name="METHOD_NAME" value="testUpdateUserData" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="DataBaseTest.testUpdateUserPasswordWithSameAsOld" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="AuthenticationServer" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="server.services.database.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="server.services.database" />
+      <option name="MAIN_CLASS_NAME" value="server.services.database.DataBaseTest" />
+      <option name="METHOD_NAME" value="testUpdateUserPasswordWithSameAsOld" />
+      <option name="TEST_OBJECT" value="method" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="Application.Main" />
-        <item itemvalue="Application.HTTPServerDemo" />
+        <item itemvalue="JUnit.DataBaseTest.testUpdateUserData" />
+        <item itemvalue="JUnit.DataBaseTest.testFindUserInDataBaseWithUsernameAndPassword" />
+        <item itemvalue="JUnit.DataBaseTest.testFindUserInDataBaseWithUsername" />
+        <item itemvalue="JUnit.DataBaseTest.testRegisterSameUserTwoTimes" />
+        <item itemvalue="JUnit.DataBaseTest.testUpdateUserPasswordWithSameAsOld" />
       </list>
     </recent_temporary>
   </component>
@@ -107,11 +177,19 @@
       <workItem from="1675425887280" duration="25217000" />
       <workItem from="1675948515352" duration="28364000" />
       <workItem from="1676649063951" duration="1152000" />
-      <workItem from="1677094814254" duration="4386000" />
+      <workItem from="1677094814254" duration="12170000" />
     </task>
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="3" />
+  </component>
+  <component name="com.intellij.coverage.CoverageDataManagerImpl">
+    <SUITE FILE_PATH="coverage/AuthenticationServer$AECommandServiceTest.ic" NAME="AECommandServiceTest Coverage Results" MODIFIED="1677102307575" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
+      <FILTER>server.services.commands.*</FILTER>
+    </SUITE>
+    <SUITE FILE_PATH="coverage/AuthenticationServer$DataBaseTest.ic" NAME="DataBaseTest Coverage Results" MODIFIED="1677243977284" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
+      <FILTER>server.services.database.*</FILTER>
+    </SUITE>
   </component>
 </project>

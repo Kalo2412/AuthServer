@@ -70,7 +70,12 @@ public final class AEProxyDB implements ProxyDB {
         // check what to do with username
         AESession session = isValidSession(sessionId);
         User user = this.loggedUsers.get(session);
-        this.dataBase.updatePassword(user, newPassword);
+        if (!Objects.equals(user.getUserData().username(), username)) {
+            // todo
+        }
+
+
+        this.dataBase.updatePassword(user, oldPassword, newPassword);
     }
 
     @Override

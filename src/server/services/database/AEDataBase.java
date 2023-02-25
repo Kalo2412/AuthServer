@@ -3,8 +3,10 @@ package server.services.database;
 import server.exceptions.PasswordTheSameAsOldException;
 import server.exceptions.UserExistsException;
 import server.exceptions.UserNotFoundException;
+import server.exceptions.WrongPasswordException;
 import server.models.User;
 import server.models.UserData;
+import server.services.providers.AEPasswordSHA;
 
 import java.util.HashSet;
 import java.util.Objects;
@@ -27,37 +29,35 @@ public class AEDataBase implements DataBase {
     }
 
     @Override
-    public void save(User user) {
-        this.allUsers.add(user);
-        System.out.println(this.allUsers);
-    }
-
-    @Override
     public void delete(User user) {
-        this.allUsers.remove(user);
+        boolean existed = this.allUsers.remove(user);
+        if(!existed) {
+            throw new NullPointerException("Trying to remove user that does not exist");
+        }
     }
 
     @Override
     public void update(User user, UserData userData) {
         String username = userData.username() == null ? user.getUserData().username() : userData.username();
-        String password = userData.password() == null ? user.getUserData().password() : userData.password();
         String firstName = userData.firstName() == null ? user.getUserData().firstName() : userData.firstName();
         String lastName = userData.lastName() == null ? user.getUserData().lastName() : userData.lastName();
         String email = userData.email() == null ? user.getUserData().email() : userData.email();
-        user.updateUserData(username, password, firstName, lastName, email);
+        user.updateUserData(username, user.getUserData().password(), firstName, lastName, email);
     }
 
     @Override
-    public void updatePassword(User user, String newPassword) {
-        if (Objects.equals(user.getUserData().password(), newPassword)) {
-            throw new PasswordTheSameAsOldException("New password is the same as old!");
-        } else {
-            String username = user.getUserData().username();
-            String firstName = user.getUserData().firstName();
-            String lastName = user.getUserData().lastName();
-            String email = user.getUserData().email();
-            user.updateUserData(username, newPassword, firstName, lastName, email);
+    public void updatePassword(User user, String oldPassword, String newPassword) {
+        if (!Objects.equals(user.getUserData().password(), AEPasswordSHA.hashPassword(oldPassword))) {
+            throw new WrongPasswordException("Wrong password!");
         }
+        if (Objects.equals(oldPassword, newPassword)) {
+            throw new PasswordTheSameAsOldException("The password is the same as old");
+        }
+        String username = user.getUserData().username();
+        String firstName = user.getUserData().firstName();
+        String lastName = user.getUserData().lastName();
+        String email = user.getUserData().email();
+        user.updateUserData(username, newPassword, firstName, lastName, email);
     }
 
     @Override
@@ -68,6 +68,8 @@ public class AEDataBase implements DataBase {
                 .orElse(null);
         if (userInDataBase != null) {
             throw new UserExistsException("This username is already taken.");
+        } else {
+            this.allUsers.add(user);
         }
     }
 
@@ -100,7 +102,7 @@ public class AEDataBase implements DataBase {
 
     @Override
     public void updateRights(User user, boolean shouldBeAdmin) {
-        User user1 = findUser(user.getUserData().firstName());
+        User user1 = findUser(user.getUserData().username());
         user1.setAdmin(shouldBeAdmin);
     }
     @Override

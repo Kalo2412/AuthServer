@@ -20,7 +20,7 @@ public class AESession {
     public boolean validate() {
         Timestamp currentTimeStamp  = new Timestamp(System.currentTimeMillis());
         double differenceInMinutes = (currentTimeStamp.getTime() - lastCommandTimestamp.getTime()) / 60d;
-        if (differenceInMinutes > AESession.SESSION_TIMEOUT) {
+        if (differenceInMinutes < AESession.SESSION_TIMEOUT) {
             return false;
         } else {
             lastCommandTimestamp = currentTimeStamp;

@@ -1,0 +1,2 @@
+{"username":"kalo","password":"a8ac984c49e4617cb3da0696ab93541660e00d4e14a8ccc0f490a7b4050efebc","firstName":"novo","lastName":"ime","email":"emailche","plainTextPassword":"f9df8ab3f7860f0fbb024525f4cd3d7c305c174953c38da66d6c624821b2e816"}
+{"username":"nov","password":"6f589d09e3fb033adb7704416f2c636fb9d22146e093e2b9afe29c4d0a93af16","firstName":"edi","lastName":"koisi","email":"test@gmail.com","plainTextPassword":"12342342156789"}

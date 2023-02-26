@@ -52,9 +52,15 @@ public class AECommandService implements CommandService {
     }
 
     private String login() {
-        return this.proxyDB.login(
-                isNotNull(AEArguments.username),
-                isNotNull(AEArguments.password));
+        if (this.input.size() == 1) {
+            this.proxyDB.login(
+                    isNotNull(AEArguments.session_id));
+        } else {
+            return this.proxyDB.login(
+                    isNotNull(AEArguments.username),
+                    isNotNull(AEArguments.password));
+        }
+        return "";
     }
 
     private String updateUser() {

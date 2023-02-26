@@ -18,12 +18,43 @@ class DataBaseTest {
     private static DataBase dataBase;
     @BeforeAll
     static void setUp() {
-        dataBase = AEDataBase.getDataBase();
+        dataBase = AEDataBase.getTestDataBase();
         dataBase.register(testUser);
     }
     @AfterAll
     static void teardown() {
         dataBase = null;
+    }
+
+    @Test
+    void testRegisterNewUser() {
+        User newUser = new AEUser("nov", "12342342156789", "edi", "koisi", "test@gmail.com");
+        assertDoesNotThrow(() -> dataBase.register(newUser));
+    }
+
+    @Test
+    void testRegisterSameUserTwoTimes() {
+        assertThrows(UserExistsException.class, () -> dataBase.register(testUser));
+    }
+
+    @Test
+    void testFindUserInDataBaseWithUsername() {
+        assertDoesNotThrow(() -> dataBase.findUser(testUser.getUserData().username()));
+        assertThrows(UserNotFoundException.class, () -> dataBase.findUser("random username"));
+    }
+
+    @Test
+    void testFindUserInDataBaseWithUsernameAndPassword() {
+        assertDoesNotThrow(() -> dataBase.findUser(testUser.getUserData().username(),
+                testUser.getUserData().password()));
+        assertThrows(UserNotFoundException.class, () -> dataBase.findUser("random username",
+                "random password"));
+    }
+
+    @Test
+    void testUpdateAndGetRights() {
+        dataBase.updateRights(testUser, true);
+        assertTrue(dataBase.getRights(testUser));
     }
     @Test
     void testDeleteUserWhoExists() {
@@ -57,34 +88,5 @@ class DataBaseTest {
         assertEquals(testUser.getUserData().password(), AEPasswordSHA.hashPassword("7238491087"));
     }
 
-    @Test
-    void testRegisterNewUser() {
-        User newUser = new AEUser("nov", "12342342156789", "edi", "koisi", "test@gmail.com");
-        assertDoesNotThrow(() -> dataBase.register(newUser));
-    }
 
-    @Test
-    void testRegisterSameUserTwoTimes() {
-        assertThrows(UserExistsException.class, () -> dataBase.register(testUser));
-    }
-
-    @Test
-    void testFindUserInDataBaseWithUsername() {
-        assertDoesNotThrow(() -> dataBase.findUser(testUser.getUserData().username()));
-        assertThrows(UserNotFoundException.class, () -> dataBase.findUser("random username"));
-    }
-
-    @Test
-    void testFindUserInDataBaseWithUsernameAndPassword() {
-        assertDoesNotThrow(() -> dataBase.findUser(testUser.getUserData().username(),
-                testUser.getUserData().password()));
-        assertThrows(UserNotFoundException.class, () -> dataBase.findUser("random username",
-                "random password"));
-    }
-
-    @Test
-    void testUpdateAndGetRights() {
-        dataBase.updateRights(testUser, true);
-        assertTrue(dataBase.getRights(testUser));
-    }
 }

@@ -5,10 +5,12 @@ import net.bytebuddy.implementation.bind.annotation.RuntimeType;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
 import org.mockito.junit.MockitoJUnitRunner;
+import org.mockito.junit.jupiter.MockitoExtension;
 import server.authenticator.Authenticator;
 import server.authorizator.Authorizator;
 import server.models.AEUser;
@@ -22,7 +24,7 @@ import static org.mockito.ArgumentMatchers.isA;
 import static org.mockito.Mockito.doNothing;
 import static org.mockito.Mockito.when;
 
-
+@ExtendWith(MockitoExtension.class)
 public class CommandServiceTest {
 
     @Mock
@@ -32,24 +34,9 @@ public class CommandServiceTest {
     @Mock
     private DataBase dataBase;
 
+    @InjectMocks
     private  ProxyDB proxyDB;
-    private  CommandService aeCommandService;
-
-
-    private AutoCloseable closeable;
-
-    @BeforeEach
-    void initService() {
-        closeable = MockitoAnnotations.openMocks(this);
-        proxyDB = new AEProxyDB(dataBase, authenticator, authorizator);
-        aeCommandService = new AECommandService(proxyDB);
-    }
-
-    @AfterEach
-    void closeService() throws Exception {
-        closeable.close();
-    }
-
+    private  CommandService aeCommandService = new AECommandService(proxyDB);
 
 
     @Test

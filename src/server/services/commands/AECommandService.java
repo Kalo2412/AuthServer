@@ -37,7 +37,7 @@ public class AECommandService implements CommandService {
                 };
             }
         }
-        input.forEach((key, value) -> System.out.println(key + ": " + value));
+        //input.forEach((key, value) -> System.out.println(key + ": " + value));
         return "";
     }
 
@@ -52,7 +52,7 @@ public class AECommandService implements CommandService {
     }
 
     private String login() {
-        if (this.input.size() == 1) {
+        if (this.input.size() == 2) {
             this.proxyDB.login(
                     isNotNull(AEArguments.session_id));
         } else {

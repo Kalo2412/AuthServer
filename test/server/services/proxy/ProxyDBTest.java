@@ -67,7 +67,6 @@ class ProxyDBTest {
         doThrow(UserNotFoundException.class).when(authenticator).authenticate("kalo", "sduhkal");
         assertThrows(UserNotFoundException.class, () -> proxyDB.login("kalo", "sduhkal"));
         assertEquals(proxyDB.getLoggedUsers().size(), 0);
-        // todo
     }
 
     @Test

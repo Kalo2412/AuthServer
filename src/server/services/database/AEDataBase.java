@@ -136,8 +136,6 @@ public class AEDataBase implements DataBase {
     }
 
 
-
-
     public static void saveUsers(Set<User> users) {
         try (FileWriter writer = new FileWriter(FILENAME)) {
             for (User user : users) {

@@ -6,10 +6,12 @@
   <component name="ChangeListManager">
     <list default="true" id="9463c6a9-3b8e-47d6-bb6d-ce529812ee40" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/AuthenticationServer.iml" beforeDir="false" afterPath="$PROJECT_DIR$/AuthenticationServer.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/users.txt" beforeDir="false" afterPath="$PROJECT_DIR$/assets/users.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/server/models/UserData.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/server/models/UserData.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/server/services/commands/AECommandService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/server/services/commands/AECommandService.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/server/services/database/AEDataBase.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/server/services/database/AEDataBase.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/server/services/session/AESession.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/server/services/session/AESession.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/test/server/services/commands/CommandServiceTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/test/server/services/commands/CommandServiceTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/test/server/services/proxy/ProxyDBTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/test/server/services/proxy/ProxyDBTest.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -74,57 +76,8 @@
       <recent name="server.services.proxy" />
     </key>
   </component>
-  <component name="RunManager" selected="JUnit.DataBaseTest">
-    <configuration name="AEServer" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="server.AEServer" />
-      <module name="AuthenticationServer" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="server.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration name="Client" type="Application" factoryName="Application" singleton="false" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="client.Client" />
-      <module name="AuthenticationServer" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="client.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration name="Main" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="Main" />
-      <module name="AuthenticationServer" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration name="CommandServiceTest.testRegisterCommand" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <module name="AuthenticationServer" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="server.services.commands.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <option name="PACKAGE_NAME" value="server.services.commands" />
-      <option name="MAIN_CLASS_NAME" value="server.services.commands.CommandServiceTest" />
-      <option name="METHOD_NAME" value="testRegisterCommand" />
-      <option name="TEST_OBJECT" value="method" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration name="DataBaseTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+  <component name="RunManager" selected="JUnit.DataBaseTest.testFindUserInDataBaseWithUsername">
+    <configuration name="DataBaseTest.testFindUserInDataBaseWithUsername" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="AuthenticationServer" />
       <extension name="coverage">
         <pattern>
@@ -134,18 +87,83 @@
       </extension>
       <option name="PACKAGE_NAME" value="server.services.database" />
       <option name="MAIN_CLASS_NAME" value="server.services.database.DataBaseTest" />
-      <option name="TEST_OBJECT" value="class" />
+      <option name="METHOD_NAME" value="testFindUserInDataBaseWithUsername" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="DataBaseTest.testRegisterSameUserTwoTimes" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="AuthenticationServer" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="server.services.database.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="server.services.database" />
+      <option name="MAIN_CLASS_NAME" value="server.services.database.DataBaseTest" />
+      <option name="METHOD_NAME" value="testRegisterSameUserTwoTimes" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="DataBaseTest.testUpdateUserData" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="AuthenticationServer" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="server.services.database.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="server.services.database" />
+      <option name="MAIN_CLASS_NAME" value="server.services.database.DataBaseTest" />
+      <option name="METHOD_NAME" value="testUpdateUserData" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="DataBaseTest.testUpdateUserPasswordWithSameAsOld" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="AuthenticationServer" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="server.services.database.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="server.services.database" />
+      <option name="MAIN_CLASS_NAME" value="server.services.database.DataBaseTest" />
+      <option name="METHOD_NAME" value="testUpdateUserPasswordWithSameAsOld" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="ProxyDBTest.testLoginWithUnknownUser" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="AuthenticationServer" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="server.services.proxy.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="server.services.proxy" />
+      <option name="MAIN_CLASS_NAME" value="server.services.proxy.ProxyDBTest" />
+      <option name="METHOD_NAME" value="testLoginWithUnknownUser" />
+      <option name="TEST_OBJECT" value="method" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="JUnit.DataBaseTest" />
-        <item itemvalue="Application.Client" />
-        <item itemvalue="Application.AEServer" />
-        <item itemvalue="Application.Main" />
-        <item itemvalue="JUnit.CommandServiceTest.testRegisterCommand" />
+        <item itemvalue="JUnit.DataBaseTest.testFindUserInDataBaseWithUsername" />
+        <item itemvalue="JUnit.DataBaseTest.testRegisterSameUserTwoTimes" />
+        <item itemvalue="JUnit.DataBaseTest.testUpdateUserData" />
+        <item itemvalue="JUnit.DataBaseTest.testUpdateUserPasswordWithSameAsOld" />
+        <item itemvalue="JUnit.ProxyDBTest.testLoginWithUnknownUser" />
       </list>
     </recent_temporary>
   </component>
@@ -162,7 +180,7 @@
       <workItem from="1675425887280" duration="25217000" />
       <workItem from="1675948515352" duration="28364000" />
       <workItem from="1676649063951" duration="1152000" />
-      <workItem from="1677094814254" duration="28792000" />
+      <workItem from="1677094814254" duration="34298000" />
     </task>
     <servers />
   </component>
@@ -176,5 +194,6 @@
     <SUITE FILE_PATH="coverage/AuthenticationServer$DataBaseTest.ic" NAME="DataBaseTest Coverage Results" MODIFIED="1677243977284" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
       <FILTER>server.services.database.*</FILTER>
     </SUITE>
+    <SUITE FILE_PATH="coverage/AuthenticationServer$All_in_AuthenticationServer.ic" NAME="All in AuthenticationServer Coverage Results" MODIFIED="1677406410871" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" />
   </component>
 </project>
